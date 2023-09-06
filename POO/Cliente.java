@@ -41,7 +41,7 @@ public class Cliente {
         this.renda = renda;
     }
 
-    // 
+    // Getters
 
     public String getCpf() {
         return cpf;
