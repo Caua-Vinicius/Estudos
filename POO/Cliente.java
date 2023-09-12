@@ -5,9 +5,10 @@ public class Cliente {
     public String endereco;
     public String dataNascimento;
     public float renda;
+    public Conta conta;
 
 
-    public void info(){
+    public void infoCliente(){
 
         System.out.println("Nome: " +getNomeCliente());
         System.out.println("Cpf: " +getCpf());
@@ -15,6 +16,7 @@ public class Cliente {
         System.out.println("Endereco: " +getEndereco());
         System.out.println("IdCliente: " +getId_cliente());
         System.out.println("Renda: " +getRenda());
+        this.conta.infoConta();
         
     }
 
@@ -40,6 +42,9 @@ public class Cliente {
     public void setRenda(float renda) {
         this.renda = renda;
     }
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
 
     // Getters
 
@@ -60,5 +65,8 @@ public class Cliente {
     }
     public float getRenda() {
         return renda;
+    }
+    public Conta getConta() {
+        return conta;
     }
 }
