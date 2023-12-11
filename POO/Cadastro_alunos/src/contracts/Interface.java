@@ -1,3 +1,5 @@
+package contracts;
+import models.Alunos;
 
 public interface Interface {
 

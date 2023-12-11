@@ -1,5 +1,9 @@
-import java.util.ArrayList; // import the ArrayList class
+package repositories;
+import contracts.Interface;
 
+import java.util.ArrayList; // import the ArrayList class
+import models.Alunos;
+import exceptions.*;;
 
 public class IAlunoRepository implements Interface{
     ArrayList<Alunos> Alunos = new ArrayList<Alunos>();
@@ -23,6 +27,7 @@ public class IAlunoRepository implements Interface{
         return -1;
     }
 
+
     public void remover(String nome){
         int busca = this.busca(nome);
         if (busca > -1) {
@@ -36,14 +41,21 @@ public class IAlunoRepository implements Interface{
         }
     }
 
-    public void buscar(String nome){
-        int busca = this.busca(nome);
-
-        if (busca > -1) {
-            System.out.println("Aluno encontrado!");
+    public int index_Of(String nome) throws Alunonaoencontradoexception {
+        int indice = this.busca(nome);
+        if (indice == -1) {
+            throw new Alunonaoencontradoexception("Aluno não encontrado no sistema!");
         }
-        else{
-            System.out.println("Aluno não cadastrado no sistema!");
+        return indice;
+    }
+
+    public void buscar(String nome){
+        try {
+            int indice = this.index_Of(nome);
+            System.out.println("Aluno cadastrado no sistema!");       
+        } catch (Alunonaoencontradoexception e) {
+            // TODO: handle exception
+            System.out.println(e.getMessage());
         }
     }
 }
