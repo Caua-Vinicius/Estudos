@@ -26,7 +26,7 @@ public class Alunos{
 
     public void check_matricula(String matricula) throws MatriculainvalidadExeception{
         String teste_matricula = matricula;
-         if(teste_matricula.length()<10){
+         if(teste_matricula.length() != 10){
             throw new MatriculainvalidadExeception("Matricula invalida!");
          }
     }
