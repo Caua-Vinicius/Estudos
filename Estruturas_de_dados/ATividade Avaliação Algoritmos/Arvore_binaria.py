@@ -71,5 +71,5 @@ for chave in chaves:
     arvore.inserir(chave)
 
 print("Percorrendo em Ordem:", arvore.percorrer_em_ordem())
-print("Profundidade da Árvore:", arvore.profundidade())
+print("Profundidade da Árvore:", (arvore.profundidade()-1))
 print("Nós Folha:", arvore.nos_folha())
