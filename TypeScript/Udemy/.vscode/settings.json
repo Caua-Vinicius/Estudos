@@ -1,0 +1,11 @@
+{
+    "code-runner.executorMap": {
+        "typescript": "npx ts-node --files",
+    },
+
+    // Auto fix on save
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll": "explicit"
+    },
+}
