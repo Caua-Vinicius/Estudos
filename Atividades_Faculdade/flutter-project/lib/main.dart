@@ -50,17 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = GeneratorPage();
-        break;
-      case 1:
-        page = Placeholder();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
-    }
+    Widget page = GeneratorPage(); 
+     
+     switch (selectedIndex) {
+       case 0:
+         page = GeneratorPage();
+         break;
+       case 1:
+         page = FavoritesPage();
+         break;
+     }
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
@@ -106,12 +105,9 @@ class GeneratorPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
 
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
+    IconData icon = appState.favorites.contains(pair)
+         ? Icons.favorite
+         : Icons.favorite_border;
 
     return Center(
       child: Column(
@@ -169,6 +165,34 @@ class BigCard extends StatelessWidget {
           semanticsLabel: "${pair.first} ${pair.second}",
         ),
       ),
+    );
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    if (appState.favorites.isEmpty) {
+      return Center(child: Text('No favorites yet.'));
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(
+            'You have '
+            '${appState.favorites.length} favorites:',
+          ),
+        ),
+        for (var pair in appState.favorites)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+          ),
+      ],
     );
   }
 }
